@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="description" content="Udacity Portfolio Project" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta charset="utf-8">
+    <title>David Villarreal</title>
+    <!-- Loading SCSS via webpack -->
+    <!-- <link rel="stylesheet" href="/src/main.css"> -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,200,300,400,500" rel="stylesheet">
+    <script src="https://use.fontawesome.com/5d6e306413.js"></script>
+    <script src="src/app.bundle.js"></script>
+  </head>
+
+  <body>
+    <div style="height: 0px; width: 0px; position: absolute;  top: 0;" aria-hidden="true">
+      <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" focusable="false">
+        <symbol id="ripple-sym" viewBox="0, 0, 100, 100">
+          <circle id="ripple-shape" cx="1" cy="1" r="1"></circle>
+        </symbol>
+      </svg>
+    </div>
+
+    <div class="overlay">
+      <header>
+        <button id="burger" class="has-ripple" type="button" data-ripple-fill="rgba(255,255,255,0.5)">
+            <i class="fa fa-bars" aria-hidden="true"></i>
+        </button>
+        <h1>David Villarreal</h1>
+      </header>
+
+      <main>
+        <aside id="drawer">
+          <nav>
+            <ul class="menu">
+              <li class="menu-item">Experience</li>
+              <li class="sub menu-item">Web</li>
+              <li class="sub menu-item">Mobile</li>
+              <li class="sub menu-item">Machine Learning</li>
+              <li class="sub menu-item">Artificial Intelligence</li>
+              <li class="sub menu-item">Education</li>
+              <li class="sub menu-item">More</li>
+
+              <li class="menu-item">About Me</li>
+              <li class="sub menu-item">Work Ethic</li>
+              <li class="sub menu-item">Values</li>
+              <li class="sub menu-item">My Mind</li>
+            </ul>
+          </nav>
+        </aside>
+
+        <div class="content">
+
+        </div>
+      </main>
+
+      <button class="fab has-ripple" type="button" data-ripple-fill="rgba(0,0,0,0.2)">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </button>
+    </div>
+
+
+  </body>
+
+</html>
