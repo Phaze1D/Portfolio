@@ -6,7 +6,8 @@ module.exports = {
   entry: './app/index.js',
   output: {
     filename: 'app.bundle.js',
-    path: path.resolve(__dirname, 'src')
+    path: path.resolve(__dirname, 'src'),
+    publicPath: 'src/'
   },
   module: {
     rules: [
@@ -27,7 +28,7 @@ module.exports = {
       },
       {
         test: /\.(jpe?g|png|gif|svg)$/i,
-        loader: "file-loader?name=images/[name].[ext]"
+        loader: "file-loader?name=public/[name].[ext]"
       }
     ]
   }

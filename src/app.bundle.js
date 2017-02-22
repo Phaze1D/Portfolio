@@ -60,10 +60,10 @@
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
 
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
+/******/ 	__webpack_require__.p = "src/";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 7);
+/******/ 	return __webpack_require__(__webpack_require__.s = 8);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -73,15 +73,23 @@
 "use strict";
 
 
-var initDrawer = function initDrawer() {
-  var burger = document.getElementById('burger');
-  burger.addEventListener('click', function (event) {
-    var drawer = document.getElementById('drawer');
-    drawer.classList.toggle('open');
-  });
+var toggleDials = function toggleDials(event) {
+  var dialer = document.getElementById('share-dialer');
+  if (dialer.classList.contains('show')) {
+    dialer.classList.remove('show');
+    dialer.classList.add('hide');
+  } else {
+    dialer.classList.add('show');
+    dialer.classList.remove('hide');
+  }
 };
 
-exports.initDrawer = initDrawer;
+var initDialer = function initDialer() {
+  var dButton = document.getElementById('share-dialer-button');
+  dButton.addEventListener('click', toggleDials);
+};
+
+exports.initDialer = initDialer;
 
 /***/ }),
 /* 1 */
@@ -90,89 +98,91 @@ exports.initDrawer = initDrawer;
 "use strict";
 
 
-var rippleChild = function rippleChild() {
-  var rippleMain = document.createElement("div");
-  rippleMain.className = "ripple-main";
-
-  var rippleObj = document.createElement("svg");
-  rippleObj.className = "ripple-obj";
-
-  var rippleUse = document.createElement("use");
-  rippleUse.className = "ripple";
-
-  rippleUse.setAttribute("width", 100);
-  rippleUse.setAttribute("height", 100);
-  rippleUse.setAttribute("xmlns:xlink", "http://www.w3.org/1999/xlink");
-  rippleUse.setAttribute("xlink:href", "#ripple-sym");
-
-  rippleObj.appendChild(rippleUse);
-  rippleMain.appendChild(rippleObj);
-  return rippleMain;
+var toggleDrawer = function toggleDrawer(event) {
+  var drawer = document.getElementById('drawer');
+  drawer.classList.toggle('open');
 };
 
-var rippleAnimation = function rippleAnimation(fill, event) {
-  var rio = event.target.getElementsByClassName('ripple-obj')[0];
-  rio.style.fill = fill;
+var initDrawer = function initDrawer() {
+  var burgers = document.getElementsByClassName('burger');
 
-  var ruse = event.target.getElementsByTagName('use')[0];
-  ruse.style.transform = "translate(" + event.offsetX + "px, " + event.offsetY + "px) scale(1)";
-};
+  for (var i = 0; i < burgers.length; i++) {
+    burgers[i].addEventListener('click', toggleDrawer);
+  }
 
-var initRipple = function initRipple() {
-  var rippleParents = document.getElementsByClassName('has-ripple');
-
-  for (var i = 0; i < rippleParents.length; i++) {
-    rippleParents[i].appendChild(rippleChild());
-    var fill = rippleParents[i].getAttribute('data-ripple-fill');
-    rippleParents[i].addEventListener('mousedown', rippleAnimation.bind(undefined, fill));
+  if (window.outerWidth > 970) {
+    document.getElementById('drawer').classList.add('open');
   }
 };
 
-exports.initRipple = initRipple;
-
-// eoffsetX = if event.offsetX? then event.offsetX else eoffsetX
-//     eoffsetY = if event.offsetY? then event.offsetY else eoffsetY
-//
-//     @mouseD = true
-//
-//     rio = $(event.target).find('.ripple-obj')
-//     rio.css(fill: @data().fill)
-//
-//     ripple = $(event.target).find('.js-ripple')
-//     ripple.velocity 'stop'
-//     ripple.velocity(
-//       p:
-//         translateZ: '0'
-//         translateX: eoffsetX
-//         translateY: eoffsetY
-//         transformOriginX: '1px'
-//         transformOriginY: '1px'
-//         scale: 0
-//         opacity: 0.5
-//       o:
-//         duration: 0
-//
-//     ).velocity
-//       p:
-//         scale: Math.sqrt(Math.pow((event.target.offsetWidth / 2) +
-//                Math.abs( (event.target.offsetWidth / 2) - eoffsetX ), 2) +
-//                Math.pow((event.target.offsetHeight / 2) +
-//                Math.abs( (event.target.offsetHeight / 2) - eoffsetY ), 2))
-//       o:
-//         duration: 250
-//         easing: "linear"
+exports.initDrawer = initDrawer;
 
 /***/ }),
 /* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
+"use strict";
+
+
+var rippleAnimation = function rippleAnimation(color, event) {
+	var posX = event.currentTarget.offsetTop;
+	var posY = event.currentTarget.offsetLeft;
+	var buttonWidth = event.currentTarget.clientWidth;
+	var buttonHeight = event.currentTarget.clientHeight;
+
+	var child = event.currentTarget.getElementsByClassName('ripple')[0];
+	if (child) event.currentTarget.removeChild(child);
+
+	var span = document.createElement("span");
+	span.className = "ripple";
+	event.currentTarget.prepend(span);
+
+	if (buttonWidth >= buttonHeight) {
+		buttonHeight = buttonWidth;
+	} else {
+		buttonWidth = buttonHeight;
+	}
+
+	var x = event.offsetX - buttonWidth / 2;
+	var y = event.offsetY - buttonHeight / 2;
+
+	span.style.width = buttonWidth + "px";
+	span.style.height = buttonHeight + "px";
+	span.style.top = y + "px";
+	span.style.left = x + "px";
+	span.style.backgroundColor = color;
+	span.className = "ripple rippleEffect";
+};
+
+var rippleWrapper = function rippleWrapper() {
+	var wrapper = document.createElement("div");
+	wrapper.className = "ripple-wrapper";
+	return wrapper;
+};
+
+var initRipple = function initRipple() {
+	var rippleParents = document.getElementsByClassName('has-ripple');
+
+	for (var i = 0; i < rippleParents.length; i++) {
+		var color = rippleParents[i].getAttribute('data-ripple-color');
+		rippleParents[i].prepend(rippleWrapper());
+		rippleParents[i].addEventListener('click', rippleAnimation.bind(undefined, color));
+	}
+};
+
+exports.initRipple = initRipple;
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(3);
+var content = __webpack_require__(4);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
-var update = __webpack_require__(6)(content, {});
+var update = __webpack_require__(7)(content, {});
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -189,21 +199,21 @@ if(false) {
 }
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(4)();
+exports = module.exports = __webpack_require__(5)();
 // imports
 
 
 // module
-exports.push([module.i, ".ripple-main {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  max-width: 100vw;\n  max-height: 100vh; }\n  .ripple-main .ripple-obj {\n    height: 100%;\n    pointer-events: none;\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%;\n    z-index: 0; }\n  .ripple-main use {\n    opacity: 0; }\n\n* {\n  box-sizing: border-box; }\n\nbody {\n  background-image: url(" + __webpack_require__(5) + ");\n  background-size: cover;\n  background-repeat: no-repeat;\n  background-position: center center;\n  width: 100vw;\n  height: 100vh;\n  margin: 0;\n  color: white;\n  font-family: 'Raleway', sans-serif;\n  font-weight: 300;\n  font-size: 16px; }\n\nheader {\n  display: flex;\n  align-items: center;\n  text-align: right;\n  border-bottom: 1px solid white;\n  padding: 0px 16px 0; }\n\nh1 {\n  flex-grow: 1;\n  font-weight: 500; }\n\nfooter {\n  border-top: 1px solid white; }\n\naside {\n  min-height: 100%;\n  width: 256px; }\n\nmain {\n  display: flex;\n  min-height: calc(100% - 97px); }\n\n.menu {\n  margin: 0;\n  list-style: none;\n  padding: 0; }\n\n.menu-item {\n  display: flex;\n  align-items: center;\n  border-radius: 2px;\n  padding: 16px 10px 16px 16px;\n  cursor: pointer; }\n  .menu-item i {\n    display: flex;\n    justify-content: center;\n    margin-left: auto;\n    font-size: 22px;\n    width: 24px;\n    height: 24px; }\n  .menu-item:hover {\n    background-color: rgba(255, 255, 255, 0.2); }\n  .menu-item.sub {\n    padding: 10px 10px 10px 32px; }\n\n.overlay {\n  background-color: rgba(0, 0, 0, 0.65);\n  width: 100%;\n  min-height: 100%; }\n\n.has-ripple {\n  position: relative;\n  overflow: hidden; }\n\n.fab {\n  position: fixed;\n  height: 58px;\n  width: 58px;\n  right: 34px;\n  bottom: 34px;\n  border-radius: 50px;\n  border: none;\n  background-color: white;\n  outline: none;\n  cursor: pointer; }\n  .fab i {\n    font-size: 22px;\n    color: #2979FF; }\n\n#burger {\n  cursor: pointer;\n  border: none;\n  background-color: transparent;\n  color: white;\n  font-size: 22px;\n  border-radius: 50px;\n  width: 64px;\n  height: 64px;\n  outline: none; }\n\n#drawer {\n  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }\n  #drawer.open {\n    transform: translate(-100%, 0); }\n", ""]);
+exports.push([module.i, "* {\n  box-sizing: border-box;\n  -webkit-tap-highlight-color: rgba(255, 255, 255, 0); }\n\nbody {\n  background-image: url(" + __webpack_require__(6) + ");\n  background-size: cover;\n  background-repeat: no-repeat;\n  background-position: center center;\n  width: 100vw;\n  min-height: 100vh;\n  margin: 0;\n  color: white;\n  font-family: 'Raleway', sans-serif;\n  font-weight: 300;\n  font-size: 16px; }\n\nheader {\n  display: flex;\n  align-items: center;\n  text-align: right;\n  border-bottom: 1px solid white;\n  padding: 0 16px 0; }\n\nh1, h2, h3, h4, h5 {\n  font-weight: 500; }\n\nfooter {\n  border-top: 1px solid white; }\n\naside {\n  min-height: 100%;\n  width: 256px; }\n\nmain {\n  display: flex;\n  min-height: calc(100vh - 92px); }\n\nbutton {\n  border: none;\n  outline: none;\n  cursor: pointer;\n  background-color: transparent;\n  user-select: none; }\n\nsection {\n  padding: 0 16px; }\n\na {\n  text-decoration: none; }\n\n.flex-grid {\n  display: flex;\n  flex-wrap: wrap; }\n\n.content {\n  flex-grow: 1; }\n\n.overlay {\n  background-color: rgba(0, 0, 0, 0.65);\n  width: 100%;\n  min-height: 100%;\n  padding-bottom: 80px; }\n\n.date {\n  font-family: 'Roboto', sans-serif; }\n\n.menu {\n  margin: 0;\n  list-style: none;\n  padding: 0; }\n\n.menu-item {\n  display: flex;\n  align-items: center;\n  border-radius: 2px;\n  padding: 16px 10px 16px 16px;\n  cursor: pointer; }\n  .menu-item i {\n    display: flex;\n    justify-content: center;\n    margin-left: auto;\n    font-size: 22px;\n    width: 24px;\n    height: 24px; }\n  .menu-item:hover {\n    background-color: rgba(255, 255, 255, 0.2); }\n  .menu-item.sub {\n    padding: 10px 10px 10px 32px; }\n\n.has-ripple {\n  position: relative;\n  perspective: 1px;\n  overflow: hidden; }\n\n.ripple {\n  width: 0;\n  height: 0;\n  border-radius: 50%;\n  transform: scale(0);\n  position: absolute;\n  opacity: 1;\n  pointer-events: none;\n  overflow: hidden; }\n\n.ripple-wrapper {\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  top: 0;\n  left: 0; }\n\n.rippleEffect {\n  animation: rippleDrop .5s linear; }\n\n@keyframes rippleDrop {\n  100% {\n    transform: scale(2);\n    opacity: 0; } }\n\n.fab {\n  height: 100%;\n  width: 100%;\n  border-radius: 50px;\n  background-color: white;\n  box-shadow: 0px 0px 5px 1px black; }\n  .fab i {\n    font-size: 22px;\n    color: #2979FF; }\n\n.fab-dialer {\n  position: fixed;\n  height: 58px;\n  width: 58px;\n  right: 34px;\n  bottom: 34px;\n  transition: all .25s linear; }\n\n.fab-dial {\n  position: absolute;\n  width: 40px;\n  height: 40px;\n  left: calc(50% - 20px);\n  border-radius: 50px;\n  background-color: white;\n  box-shadow: 0px 0px 5px 1px black;\n  transform: scale(0);\n  transition: transform 0.14286s cubic-bezier(0.55, 0, 0.55, 0.2); }\n  .fab-dial i {\n    vertical-align: middle;\n    font-size: 20px; }\n  .fab-dial img {\n    width: 24px;\n    height: 24px; }\n  .fab-dial[data-dial=\"1\"] {\n    top: -48px; }\n  .fab-dial[data-dial=\"2\"] {\n    top: -96px; }\n  .fab-dial[data-dial=\"3\"] {\n    top: -144px; }\n\n.fa-linkedin-square {\n  color: #007bb6; }\n\n.show .fab-dial {\n  transform: scale(1); }\n  .show .fab-dial[data-dial=\"1\"] {\n    transition-delay: -127ms; }\n  .show .fab-dial[data-dial=\"2\"] {\n    transition-delay: -62ms; }\n  .show .fab-dial[data-dial=\"3\"] {\n    transition-delay: 3ms; }\n\n.hide .fab-dial {\n  transform: scale(0); }\n  .hide .fab-dial[data-dial=\"1\"] {\n    transition-delay: 130ms; }\n  .hide .fab-dial[data-dial=\"2\"] {\n    transition-delay: 65ms; }\n  .hide .fab-dial[data-dial=\"3\"] {\n    transition-delay: 0ms; }\n\n@media (max-width: 750px) {\n  .fab-dialer {\n    height: 56px;\n    width: 56px;\n    right: 24px;\n    bottom: 24px; }\n  .fab-dial {\n    width: 34px;\n    height: 34px;\n    left: calc(50% - 17px); } }\n\n@media (max-width: 580px) {\n  .fab-dialer {\n    right: 14px;\n    bottom: 14px; } }\n\n.card {\n  background-color: rgba(0, 0, 0, 0.5);\n  max-width: 400px;\n  border: 1px solid white;\n  border-radius: 3px;\n  overflow: hidden; }\n  .card .bottom {\n    padding: 0 16px 0; }\n  .card img {\n    max-width: 100%; }\n  .card p {\n    text-align: justify; }\n  .card h3 {\n    font-size: 24px;\n    margin: 15px 0 0; }\n  .card h5 {\n    margin: 2px 0 16px;\n    font-size: 12px;\n    color: #bdbdbd; }\n\n.tags {\n  list-style: none;\n  padding: 0 16px;\n  margin: 16px 0 16px; }\n  .tags li {\n    font-size: 13px;\n    font-weight: 500;\n    display: inline-block;\n    background-color: #ff6d00;\n    padding: 5px 8px;\n    margin: 5px;\n    border-radius: 2px; }\n\n@media screen and (orientation: landscape) and (max-width: 970px) {\n  .card {\n    display: flex;\n    flex-wrap: wrap;\n    max-width: 600px; }\n    .card .bottom {\n      width: 60%;\n      flex-shrink: 0;\n      order: 0; }\n    .card p {\n      max-width: 100%;\n      overflow: hidden;\n      position: relative;\n      font-size: 16px;\n      line-height: 18px;\n      max-height: 90px;\n      text-align: justify;\n      margin-right: -1em;\n      padding-right: 1em; }\n      .card p:before {\n        content: '...';\n        position: absolute;\n        font-size: 1.3em;\n        right: 5px;\n        bottom: 2px; }\n      .card p:after {\n        content: '';\n        position: absolute;\n        right: 0;\n        width: 1em;\n        height: 1em;\n        margin-top: 0.2em;\n        background: white; }\n    .card picture {\n      padding: 16px 16px 0 0;\n      order: 1;\n      max-width: 40%; }\n    .card .tags {\n      text-align: right;\n      flex-grow: 1;\n      order: 2;\n      margin: 0 0 16px; } }\n\n.burger {\n  cursor: pointer;\n  border: none;\n  background-color: transparent;\n  color: white;\n  border-radius: 50px;\n  width: 56px;\n  height: 56px;\n  outline: none; }\n  .burger i {\n    vertical-align: middle; }\n\n#drawer {\n  overflow-y: scroll;\n  overflow-x: hidden;\n  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);\n  margin-left: -256px;\n  max-height: 100vh; }\n  #drawer.open {\n    margin-left: 0; }\n  #drawer .burger {\n    display: none; }\n\n#titles {\n  padding: 10px 0;\n  flex-grow: 1; }\n  #titles h1 {\n    margin: 5px; }\n  #titles h4 {\n    margin: 5px; }\n\n@media (max-width: 970px) {\n  #drawer {\n    position: fixed;\n    left: 0;\n    top: 0;\n    margin: 0;\n    z-index: 100;\n    transform: translate(-100%, 0);\n    background-color: rgba(0, 0, 0, 0.95);\n    box-shadow: 0px 0px 5px 1px black; }\n    #drawer.open {\n      transform: translate(0, 0); }\n    #drawer .burger {\n      display: block; } }\n\n@media (max-width: 580px) {\n  #titles h1 {\n    font-size: 22px; }\n  #titles h4 {\n    font-size: 14px; } }\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports) {
 
 /*
@@ -259,13 +269,13 @@ module.exports = function() {
 
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "images/beauty.jpg";
+module.exports = __webpack_require__.p + "public/beauty.jpg";
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports) {
 
 /*
@@ -517,21 +527,24 @@ function updateLink(linkElement, obj) {
 
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _drawer = __webpack_require__(0);
+var _drawer = __webpack_require__(1);
 
-var _ripple = __webpack_require__(1);
+var _ripple = __webpack_require__(2);
 
-__webpack_require__(2);
+var _dialer = __webpack_require__(0);
+
+__webpack_require__(3);
 
 document.addEventListener("DOMContentLoaded", function (event) {
     (0, _drawer.initDrawer)();
     (0, _ripple.initRipple)();
+    (0, _dialer.initDialer)();
 });
 
 /***/ })

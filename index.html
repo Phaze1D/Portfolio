@@ -8,59 +8,100 @@
     <title>David Villarreal</title>
     <!-- Loading SCSS via webpack -->
     <!-- <link rel="stylesheet" href="/src/main.css"> -->
-    <link href="https://fonts.googleapis.com/css?family=Raleway:100,200,300,400,500" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://use.fontawesome.com/5d6e306413.js"></script>
     <script src="src/app.bundle.js"></script>
   </head>
 
   <body>
-    <div style="height: 0px; width: 0px; position: absolute;  top: 0;" aria-hidden="true">
-      <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" focusable="false">
-        <symbol id="ripple-sym" viewBox="0, 0, 100, 100">
-          <circle id="ripple-shape" cx="1" cy="1" r="1"></circle>
-        </symbol>
-      </svg>
-    </div>
-
     <div class="overlay">
       <header>
-        <button id="burger" class="has-ripple" type="button" data-ripple-fill="rgba(255,255,255,0.5)">
-            <i class="fa fa-bars" aria-hidden="true"></i>
+        <button class="burger has-ripple" type="button" data-ripple-color="rgba(255,255,255,0.5)">
+            <i class="material-icons">menu</i>
         </button>
-        <h1>David Villarreal</h1>
+        <div id="titles">
+          <h1>David Villarreal</h1>
+          <h4>Fullstack Coding Wizard</h4>
+        </div>
       </header>
 
       <main>
-        <aside id="drawer">
+        <aside id="drawer" class="">
           <nav>
+            <button class="burger has-ripple" type="button" data-ripple-color="rgba(255,255,255,0.5)">
+                <i class="material-icons">menu</i>
+            </button>
             <ul class="menu">
-              <li class="menu-item">Experience</li>
-              <li class="sub menu-item">Web</li>
-              <li class="sub menu-item">Mobile</li>
-              <li class="sub menu-item">Machine Learning</li>
-              <li class="sub menu-item">Artificial Intelligence</li>
-              <li class="sub menu-item">Education</li>
-              <li class="sub menu-item">More</li>
+              <li class="menu-item has-ripple" data-ripple-color="rgba(0, 0, 0, 0.3)">Experience</li>
+              <li class="sub menu-item has-ripple" data-ripple-color="rgba(0, 0, 0, 0.3)">Web</li>
+              <li class="sub menu-item has-ripple" data-ripple-color="rgba(0, 0, 0, 0.3)">Mobile</li>
+              <li class="sub menu-item has-ripple" data-ripple-color="rgba(0, 0, 0, 0.3)">Machine Learning</li>
+              <li class="sub menu-item has-ripple" data-ripple-color="rgba(0, 0, 0, 0.3)">Artificial Intelligence</li>
+              <li class="sub menu-item has-ripple" data-ripple-color="rgba(0, 0, 0, 0.3)">Education</li>
+              <li class="sub menu-item has-ripple" data-ripple-color="rgba(0, 0, 0, 0.3)">Other</li>
 
-              <li class="menu-item">About Me</li>
-              <li class="sub menu-item">Work Ethic</li>
-              <li class="sub menu-item">Values</li>
-              <li class="sub menu-item">My Mind</li>
+              <li class="menu-item has-ripple" data-ripple-color="rgba(0, 0, 0, 0.3)">About Me</li>
+              <li class="sub menu-item has-ripple" data-ripple-color="rgba(0, 0, 0, 0.3)">Work Ethic</li>
+              <li class="sub menu-item has-ripple" data-ripple-color="rgba(0, 0, 0, 0.3)">Values</li>
+              <li class="sub menu-item has-ripple" data-ripple-color="rgba(0, 0, 0, 0.3)">My Mind</li>
             </ul>
           </nav>
         </aside>
 
         <div class="content">
+          <section>
+            <h2>Web Development</h2>
 
+            <div class="flex-grid">
+              <article class="card">
+                <picture>
+                  <source srcset="http://placehold.it/300x300" media="(max-width: 970px) and (orientation:landscape)">
+                  <img src="http://placehold.it/400x225" alt="Placeholder">
+                </picture>
+
+                <div class="bottom">
+                  <h3>Header</h3>
+                  <h5 class="date">Nov 12, 2012</h5>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+                    ea commodo consequat.
+                  </p>
+                </div>
+
+                <ul class="tags">
+                  <li>PHP</li>
+                  <li>Laravel</li>
+                  <li>HTML</li>
+                  <li>Javascript</li>
+                  <li>Jquery</li>
+                  <li>MeteorJS</li>
+                </ul>
+              </article>
+            </div>
+          </section>
         </div>
       </main>
 
-      <button class="fab has-ripple" type="button" data-ripple-fill="rgba(0,0,0,0.2)">
-        <i class="fa fa-share-alt" aria-hidden="true"></i>
-      </button>
+      <div id="share-dialer" class="fab-dialer">
+        <button id="share-dialer-button" class="fab has-ripple" type="button" data-ripple-color="rgba(41, 121, 255, .1)">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </button>
+
+        <button class="fab-dial has-ripple" type="button" data-dial="1" data-ripple-color="rgba(0, 0, 0, 0.3)">
+          <i class="fa fa-github" aria-hidden="true"></i>
+        </button>
+
+        <button class="fab-dial has-ripple" type="button" data-dial="2" data-ripple-color="rgba(244, 128, 35, 0.3)">
+          <img src="images/stackoverflow.svg" alt="StackOverFlow logo">
+        </button>
+
+        <button class="fab-dial has-ripple" type="button" data-dial="3" data-ripple-color="rgba(0, 123, 182, 0.3)">
+          <i class="fa fa-linkedin-square" aria-hidden="true"></i>
+        </button>
+      </div>
     </div>
-
-
   </body>
 
 </html>

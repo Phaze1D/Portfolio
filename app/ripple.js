@@ -1,78 +1,50 @@
 
 
+let rippleAnimation = (color, event) => {
+	let posX = event.currentTarget.offsetTop;
+	let posY = event.currentTarget.offsetLeft;
+	let	buttonWidth = event.currentTarget.clientWidth;
+	let	buttonHeight = event.currentTarget.clientHeight;
 
-let rippleChild = () => {
-  let rippleMain = document.createElement("div");
-  rippleMain.className = "ripple-main";
+	
+  let child = event.currentTarget.getElementsByClassName('ripple')[0];
+  if(child) event.currentTarget.removeChild( child );
 
-  let rippleObj = document.createElement("svg");
-  rippleObj.className = "ripple-obj";
+  let span = document.createElement("span");
+  span.className = "ripple";
+	event.currentTarget.prepend(span);
 
-  let rippleUse = document.createElement("use");
-  rippleUse.className = "ripple";
+	if (buttonWidth >= buttonHeight) {
+		buttonHeight = buttonWidth;
+	} else {
+		buttonWidth = buttonHeight;
+	}
 
-  rippleUse.setAttribute("width", 100);
-  rippleUse.setAttribute("height", 100);
-  rippleUse.setAttribute("xmlns:xlink","http://www.w3.org/1999/xlink")
-  rippleUse.setAttribute("xlink:href", "#ripple-sym");
+	let x = event.offsetX - buttonWidth / 2;
+	let y = event.offsetY - buttonHeight / 2;
 
-
-  rippleObj.appendChild(rippleUse)
-  rippleMain.appendChild(rippleObj)
-  return rippleMain
+	span.style.width = `${buttonWidth}px`;
+	span.style.height = `${buttonHeight}px`;
+	span.style.top = `${y}px`;
+	span.style.left = `${x}px`;
+  span.style.backgroundColor = color;
+  span.className = "ripple rippleEffect"
 }
 
-let rippleAnimation = (fill, event) => {
-  let rio = event.target.getElementsByClassName('ripple-obj')[0]
-  rio.style.fill = fill
-
-  let ruse = event.target.getElementsByTagName('use')[0]
-  ruse.style.transform = `translate(${event.offsetX}px, ${event.offsetY}px) scale(1)`;
-
+let rippleWrapper = () => {
+  let wrapper = document.createElement("div");
+  wrapper.className = "ripple-wrapper";
+  return wrapper;
 }
-
 
 let initRipple = () => {
-  let rippleParents = document.getElementsByClassName('has-ripple');
+	let rippleParents = document.getElementsByClassName('has-ripple');
 
-  for (var i = 0; i < rippleParents.length; i++) {
-    rippleParents[i].appendChild(rippleChild())
-    let fill = rippleParents[i].getAttribute('data-ripple-fill')
-    rippleParents[i].addEventListener('mousedown', rippleAnimation.bind(this, fill))
-  }
+	for (var i = 0; i < rippleParents.length; i++) {
+		let color = rippleParents[i].getAttribute('data-ripple-color')
+    rippleParents[i].prepend(rippleWrapper())
+		rippleParents[i].addEventListener('click', rippleAnimation.bind(this, color))
+	}
 }
 
 exports.initRipple = initRipple;
-
-
-// eoffsetX = if event.offsetX? then event.offsetX else eoffsetX
-//     eoffsetY = if event.offsetY? then event.offsetY else eoffsetY
-//
-//     @mouseD = true
-//
-//     rio = $(event.target).find('.ripple-obj')
-//     rio.css(fill: @data().fill)
-//
-//     ripple = $(event.target).find('.js-ripple')
-//     ripple.velocity 'stop'
-//     ripple.velocity(
-//       p:
-//         translateZ: '0'
-//         translateX: eoffsetX
-//         translateY: eoffsetY
-//         transformOriginX: '1px'
-//         transformOriginY: '1px'
-//         scale: 0
-//         opacity: 0.5
-//       o:
-//         duration: 0
-//
-//     ).velocity
-//       p:
-//         scale: Math.sqrt(Math.pow((event.target.offsetWidth / 2) +
-//                Math.abs( (event.target.offsetWidth / 2) - eoffsetX ), 2) +
-//                Math.pow((event.target.offsetHeight / 2) +
-//                Math.abs( (event.target.offsetHeight / 2) - eoffsetY ), 2))
-//       o:
-//         duration: 250
-//         easing: "linear"
