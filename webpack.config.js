@@ -1,52 +1,67 @@
 var path = require('path');
-var webpack = require("webpack");
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const INDEX_HTML = path.join(__dirname, "src", "index.html");
+var extractSass = new ExtractTextPlugin({
+    filename: "[name].css",
+});
+
+var htmlPlugin = new HtmlWebpackPlugin({
+});
+
+
 const INDEX_JS = path.join(__dirname, "src/app", "index.js");
-const INDEX_SCSS = ["sass-loader", "style-loader", "css-loader", path.join(__dirname, "src/scss", "index.scss")]
 
 
 module.exports = {
-  watch: false,
-  entry: [
-    INDEX_JS,
-    INDEX_SCSS.join('!')
-  ],
+  watch: true,
+  entry: { 'index': INDEX_JS},
   output: {
     path: path.resolve(__dirname, 'build'),
-    publicPath: 'build/'
+    filename: 'index.js',
   },
   module: {
     rules: [
       {
-        test: INDEX_HTML,
-        loaders: [
-          "file-loader?name=[name].[ext]",
-          "extract-loader",
-          "html-loader?" + JSON.stringify({
-            attrs: ["img:src"]
-          })
-        ]
-      },
-      {
         test: /\.scss$/,
-        use: [{
-            loader: "style-loader"
-        }, {
-            loader: "css-loader"
-        }, {
-            loader: "sass-loader"
-        }]
+          use: extractSass.extract({
+            use: [{
+                loader: "css-loader"
+            }, {
+                loader: "sass-loader"
+            }]
+        })
       },
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'babel-loader'
+        use: 'babel-loader'
+      },
+      {
+        test: /\.html$/,
+        use: [ {
+          loader: 'file-loader?name=[name].[ext]',
+        }, {
+          loader: 'extract-loader',
+        }, {
+          loader: 'html-loader?attrs=img:src source:srcset',
+        }],
       },
       {
         test: /\.(jpe?g|png|gif|svg)$/i,
-        loader: "file-loader?name=public/[name].[ext]"
+        use: "file-loader?name=public/[name].[ext]"
       }
     ]
-  }
+  },
+  resolve: {
+    alias: {
+       handlebars: 'handlebars/dist/handlebars.min.js'
+    }
+  },
+  node: {
+    fs: "empty"
+  },
+  plugins: [
+    extractSass,
+  ]
 };

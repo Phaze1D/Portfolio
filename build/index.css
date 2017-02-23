@@ -1,0 +1,345 @@
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0); }
+
+body {
+  background-image: url(public/beauty.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  width: 100vw;
+  max-height: 100vh;
+  overflow: hidden;
+  margin: 0;
+  color: white;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 400;
+  font-size: 16px; }
+
+header {
+  display: flex;
+  align-items: center;
+  text-align: right;
+  border-bottom: 1px solid white;
+  padding: 0 16px 0; }
+
+h1, h2, h3, h4, h5 {
+  font-weight: 500; }
+
+footer {
+  border-top: 1px solid white; }
+
+aside {
+  min-height: 100%; }
+
+main {
+  display: flex; }
+
+button {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background-color: transparent;
+  user-select: none; }
+
+section {
+  padding: 0 16px; }
+
+a {
+  text-decoration: none;
+  color: #ff6d00; }
+
+.flex-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; }
+
+.description {
+  margin-top: 0;
+  max-width: 800px;
+  text-align: justify; }
+
+.content {
+  flex-grow: 1;
+  max-height: calc(100vh - 92px);
+  overflow-y: auto;
+  padding-bottom: 100px; }
+
+.overlay {
+  background-color: rgba(0, 0, 0, 0.65);
+  width: 100%;
+  height: 100vh; }
+
+.date {
+  font-family: 'Roboto', sans-serif; }
+
+.burger {
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  color: white;
+  border-radius: 50px;
+  width: 56px;
+  height: 56px;
+  outline: none;
+  display: none; }
+  .burger i {
+    vertical-align: middle; }
+
+#drawer {
+  overflow-y: auto;
+  overflow-x: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  max-height: calc(100vh - 92px);
+  width: 256px;
+  flex-shrink: 0; }
+
+#titles {
+  padding: 10px 0;
+  flex-grow: 1; }
+  #titles h1 {
+    margin: 5px; }
+  #titles h4 {
+    margin: 5px; }
+
+@media (max-width: 970px) {
+  #drawer {
+    position: fixed;
+    left: 0;
+    top: 0;
+    margin: 0;
+    z-index: 100;
+    transform: translate(-100%, 0);
+    background-color: black;
+    box-shadow: 0px 0px 5px 1px black; }
+    #drawer.open {
+      transform: translate(0, 0); }
+  .burger {
+    display: block; } }
+
+@media (max-width: 580px) {
+  #titles h1 {
+    font-size: 22px; }
+  #titles h4 {
+    font-size: 14px; }
+  #drawer {
+    max-height: calc(100vh - 78px); }
+  .content {
+    max-height: calc(100vh - 78px); } }
+
+.menu {
+  margin: 0;
+  list-style: none;
+  padding: 0; }
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  border-radius: 2px;
+  padding: 16px 10px 16px 16px;
+  cursor: pointer; }
+  .menu-item i {
+    display: flex;
+    justify-content: center;
+    margin-left: auto;
+    font-size: 22px;
+    width: 24px;
+    height: 24px; }
+  .menu-item:hover {
+    background-color: rgba(255, 255, 255, 0.2); }
+  .menu-item.sub {
+    padding: 10px 10px 10px 32px; }
+
+.has-ripple {
+  position: relative;
+  perspective: 1px;
+  overflow: hidden; }
+
+.ripple {
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  transform: scale(0);
+  position: absolute;
+  opacity: 1;
+  pointer-events: none;
+  overflow: hidden; }
+
+.ripple-wrapper {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0; }
+
+.rippleEffect {
+  animation: rippleDrop .5s linear; }
+
+@keyframes rippleDrop {
+  100% {
+    transform: scale(2);
+    opacity: 0; } }
+
+.fab {
+  height: 100%;
+  width: 100%;
+  border-radius: 50px;
+  background-color: white;
+  box-shadow: 0px 0px 5px 1px black; }
+  .fab i {
+    font-size: 22px;
+    color: #2979FF; }
+
+.fab-dialer {
+  position: fixed;
+  height: 58px;
+  width: 58px;
+  right: 34px;
+  bottom: 34px;
+  transition: all .25s linear; }
+
+.fab-dial {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  left: calc(50% - 20px);
+  border-radius: 50px;
+  background-color: white;
+  box-shadow: 0px 0px 5px 1px black;
+  transform: scale(0);
+  transition: transform 0.14286s cubic-bezier(0.55, 0, 0.55, 0.2); }
+  .fab-dial i {
+    vertical-align: middle;
+    font-size: 20px; }
+  .fab-dial img {
+    width: 24px;
+    height: 24px; }
+  .fab-dial[data-dial="1"] {
+    top: -48px; }
+  .fab-dial[data-dial="2"] {
+    top: -96px; }
+  .fab-dial[data-dial="3"] {
+    top: -144px; }
+
+.fa-linkedin-square {
+  color: #007bb6; }
+
+.show .fab-dial {
+  transform: scale(1); }
+  .show .fab-dial[data-dial="1"] {
+    transition-delay: -127ms; }
+  .show .fab-dial[data-dial="2"] {
+    transition-delay: -62ms; }
+  .show .fab-dial[data-dial="3"] {
+    transition-delay: 3ms; }
+
+.hide .fab-dial {
+  transform: scale(0); }
+  .hide .fab-dial[data-dial="1"] {
+    transition-delay: 130ms; }
+  .hide .fab-dial[data-dial="2"] {
+    transition-delay: 65ms; }
+  .hide .fab-dial[data-dial="3"] {
+    transition-delay: 0ms; }
+
+@media (max-width: 750px) {
+  .fab-dialer {
+    height: 56px;
+    width: 56px;
+    right: 24px;
+    bottom: 24px; }
+  .fab-dial {
+    width: 34px;
+    height: 34px;
+    left: calc(50% - 17px); } }
+
+@media (max-width: 580px) {
+  .fab-dialer {
+    right: 14px;
+    bottom: 14px; } }
+
+.card {
+  flex-grow: 1;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 350px;
+  max-width: 350px;
+  min-width: 300px;
+  border: 1px solid white;
+  border-radius: 3px;
+  overflow: hidden;
+  margin: 8px; }
+  .card .bottom {
+    padding: 0 16px 0; }
+  .card picture {
+    max-width: 100%; }
+  .card img {
+    max-width: 100%; }
+  .card p {
+    text-align: justify;
+    font-size: 15px;
+    font-weight: 400; }
+  .card h3 {
+    font-size: 24px;
+    margin: 15px 0 0; }
+  .card h5 {
+    margin: 2px 0 16px;
+    font-size: 12px;
+    color: #bdbdbd; }
+
+.tags {
+  list-style: none;
+  padding: 0 16px;
+  margin: 16px 0 16px; }
+  .tags li {
+    font-size: 13px;
+    font-weight: 500;
+    display: inline-block;
+    background-color: #ff6d00;
+    padding: 5px 8px;
+    margin: 5px;
+    border-radius: 2px; }
+
+@media screen and (orientation: landscape) and (max-width: 970px) {
+  .card {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 600px;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7); }
+    .card .bottom {
+      width: 70%;
+      flex-shrink: 0;
+      order: 0; }
+    .card p {
+      max-width: 100%;
+      overflow: hidden;
+      position: relative;
+      font-size: 16px;
+      line-height: 18px;
+      max-height: 90px;
+      text-align: justify;
+      margin-right: -1em;
+      padding-right: 1em; }
+      .card p:before {
+        content: '...';
+        position: absolute;
+        font-size: 1.3em;
+        right: 5px;
+        bottom: 2px; }
+      .card p:after {
+        content: '';
+        position: absolute;
+        right: 0;
+        width: 1em;
+        height: 1em;
+        margin-top: 0.2em;
+        background: black; }
+    .card picture {
+      padding: 16px 16px 16px 0;
+      order: 1;
+      max-width: 30%; }
+    .card .tags {
+      text-align: right;
+      flex-grow: 1;
+      order: 2;
+      margin: 0 0 16px; } }

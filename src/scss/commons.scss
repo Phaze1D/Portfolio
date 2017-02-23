@@ -4,16 +4,17 @@
 }
 
 body {
-  background-image:    url("./images/beauty.jpg");
+  background-image:    url("../images/beauty.jpg");
   background-size:     cover;
   background-repeat:   no-repeat;
   background-position: center center;
   width:  100vw;
-  min-height: 100vh;
+  max-height: 100vh;
+  overflow: hidden;
   margin: 0;
   color:  white;
   font-family: 'Raleway', sans-serif;
-  font-weight: 300;
+  font-weight: 400;
   font-size:   16px;
 }
 
@@ -35,12 +36,10 @@ footer {
 
 aside {
   min-height: 100%;
-  width: $drawer-width;
 }
 
 main {
   display: flex;
-  min-height: calc(100vh - 92px);
 }
 
 button {
@@ -57,26 +56,117 @@ section {
 
 a {
   text-decoration: none;
+  color: #ff6d00;
 }
 
 .flex-grid {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+}
+
+.description {
+  margin-top: 0;
+  max-width: 800px;
+  text-align: justify;
 }
 
 .content {
   flex-grow: 1;
+  max-height: calc(100vh - 92px);
+  overflow-y: auto;
+  padding-bottom: 100px;
 }
 
 .overlay {
   background-color: rgba(0, 0, 0, 0.65);
   width: 100%;
-  min-height: 100%;
-  padding-bottom: 80px;
+  height: 100vh;
 }
 
 .date {
   font-family: 'Roboto', sans-serif;
+}
+
+.burger {
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  color: white;
+  border-radius: 50px;
+  width: 56px;
+  height: 56px;
+  outline: none;
+  display: none;
+
+  i {
+    vertical-align: middle;
+  }
+}
+
+#drawer {
+  overflow-y: auto;
+  overflow-x: hidden;
+  transition: all .3s cubic-bezier(0.4, 0, 0.2, 1);
+  max-height: calc(100vh - 92px);
+  width: $drawer-width;
+  flex-shrink: 0;
+}
+
+#titles {
+  padding: 10px 0;
+  flex-grow: 1;
+
+  h1 {
+    margin: 5px;
+  }
+
+  h4 {
+    margin: 5px;
+  }
+}
+
+
+@media (max-width: $screen-md) {
+  #drawer {
+    position: fixed;
+    left: 0;
+    top: 0;
+    margin: 0;
+    z-index: 100;
+    transform: translate(-100%, 0);
+    background-color: rgba(0,0,0,1);
+    box-shadow: 0px 0px 5px 1px rgba(0,0,0,1);
+
+
+    &.open {
+      transform: translate(0, 0);
+    }
+  }
+
+  .burger {
+    display: block;
+  }
+}
+
+
+@media (max-width: $screen-xs) {
+
+  #titles h1 {
+    font-size: 22px;
+  }
+
+  #titles h4 {
+    font-size: 14px;
+  }
+
+  #drawer {
+    max-height: calc(100vh - 78px);
+  }
+
+  .content {
+    max-height: calc(100vh - 78px);
+  }
 }
 
 

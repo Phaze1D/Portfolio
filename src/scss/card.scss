@@ -1,12 +1,20 @@
 .card {
+  flex-grow: 1;
   background-color: rgba(0, 0, 0, .5);
-  max-width: 400px;
+  width: 350px;
+  max-width: 350px;
+  min-width: 300px;
   border: 1px solid white;
   border-radius: 3px;
   overflow: hidden;
+  margin: 8px;
 
   .bottom {
     padding: 0 16px 0;
+  }
+
+  picture {
+    max-width: 100%;
   }
 
   img {
@@ -15,6 +23,8 @@
 
   p {
     text-align: justify;
+    font-size: 15px;
+    font-weight: 400;
   }
 
   h3 {
@@ -51,6 +61,7 @@
     display: flex;
     flex-wrap: wrap;
     max-width: 600px;
+    width: 100%;
     background-color: rgba(0, 0, 0, .7);
 
     .bottom {
@@ -77,3 +88,20 @@
     }
   }
 }
+
+
+// @media screen and (orientation:portrait) and (max-width: $screen-md) {
+//   .card {
+//     max-width: 400px;
+//     width: 50%;
+//     background-color: rgba(0, 0, 0, .7);
+//   }
+// }
+//
+// @media screen and (orientation:portrait) and (max-width: $screen-sm) {
+//   .card {
+//     max-width: 400px;
+//     width: 100%;
+//     background-color: rgba(0, 0, 0, .7);
+//   }
+// }
