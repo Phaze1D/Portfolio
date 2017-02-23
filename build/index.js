@@ -133,7 +133,6 @@ var _data = __webpack_require__(6);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var initHBS = function initHBS() {
-  console.log(_data.context);
   _handlebars2.default.registerPartial('cardPartial', document.getElementById('card-partial').innerHTML);
   var source = document.getElementById('sections-template').innerHTML;
   var template = _handlebars2.default.compile(source);
@@ -233,14 +232,16 @@ var context = {
       description: "This is a e-commerce website that I built for a client using a PHP framework call Laravel. It also has a\n          custom built backoffice where the client can easily manage the site and view reports and graphs. I use alot of\n          AWS products like Elasticbean Stalk, Route53, Workmail and a couple more to manage all the backend.",
       tags: ["Laravel", "HTML", "MySQL", "Javascript", "Jquery", "AWS Elasticbean Stalk", "Less"]
     }, {
-      header: "Farmage Concept",
+      header: "Farmage Backend",
       dateCreated: "Apr 7, 2016",
       dateFinished: "Oct 19, 2016",
+      description: "This is a MeteorJS Concept App for all types of agriculture business call Farmage. It is met to organize all of the\n          data that a agriculture business has into a much more manageable structure. All of the backend works but the frontend\n          is just a simple black and white mockup.",
       tags: ["MeteorJS", "JADE", "MongoDB", "Coffescript", "Blaze", "Less"]
     }, {
       header: "Farmage Frontend",
       dateCreated: "Oct 25, 2016",
-      dateFinished: "Feb 13, 2017",
+      dateFinished: "Not Finished",
+      description: "This is the frontend for Farmage Web App. I follow the <a href=\"https://material.io/guidelines/\">Material Design Guidelines</a>\n          to the best of my abilties. Splitting the app into 2 different projects made it much more maintainable and cleaner. I am hoping to\n          create the mobile version of the app with React Native",
       tags: ["ReactJS", "HTML", "ES6", "Javascript", "Less"]
     }, {
       header: "Movie Review Project",

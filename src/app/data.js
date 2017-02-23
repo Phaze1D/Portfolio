@@ -39,9 +39,12 @@ let context = {
           ]
         },
         {
-          header: "Farmage Concept",
+          header: "Farmage Backend",
           dateCreated: "Apr 7, 2016",
           dateFinished: "Oct 19, 2016",
+          description: `This is a MeteorJS Concept App for all types of agriculture business call Farmage. It is met to organize all of the
+          data that a agriculture business has into a much more manageable structure. All of the backend works but the frontend
+          is just a simple black and white mockup.`,
           tags: [
             "MeteorJS",
             "JADE",
@@ -54,7 +57,10 @@ let context = {
         {
           header: "Farmage Frontend",
           dateCreated: "Oct 25, 2016",
-          dateFinished: "Feb 13, 2017",
+          dateFinished: "Not Finished",
+          description: `This is the frontend for Farmage Web App. I follow the <a href="https://material.io/guidelines/">Material Design Guidelines</a>
+          to the best of my abilties. Splitting the app into 2 different projects made it much more maintainable and cleaner. I am hoping to
+          create the mobile version of the app with React Native`,
           tags: [
             "ReactJS",
             "HTML",

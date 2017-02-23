@@ -90,7 +90,7 @@
       <article class="card">
         <picture>
           <source srcset="{{largeImg}}" media="(min-width: 970px)">
-          <source srcset="{{landscapeImg}}" media="(max-width: 970px) and (orientation:landscape)">
+          <source srcset="{{landscapeImg}}" media="(max-width: 750px) and (orientation:landscape)">
           <img src="{{mediumImg}}" alt="Placeholder">
         </picture>
 
@@ -98,7 +98,7 @@
           <h3>{{header}}</h3>
           <h5 class="date">{{dateCreated}} - {{dateFinished}}</h5>
           <p>
-            {{description}}
+            {{{description}}}
           </p>
         </div>
 

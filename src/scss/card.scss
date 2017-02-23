@@ -56,7 +56,7 @@
   }
 }
 
-@media screen and (orientation:landscape) and (max-width: $screen-md) {
+@media screen and (orientation:landscape) and (max-width: $screen-sm) {
   .card {
     display: flex;
     flex-wrap: wrap;

@@ -299,7 +299,7 @@ a {
     margin: 5px;
     border-radius: 2px; }
 
-@media screen and (orientation: landscape) and (max-width: 970px) {
+@media screen and (orientation: landscape) and (max-width: 750px) {
   .card {
     display: flex;
     flex-wrap: wrap;
