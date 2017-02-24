@@ -8,7 +8,7 @@
   border-radius: 3px;
   overflow: hidden;
   margin: 8px;
-  // align-self: flex-start;
+  align-self: flex-start;
 
   .bottom {
     padding: 0 16px 0;
@@ -26,6 +26,10 @@
     text-align: justify;
     font-size: 15px;
     font-weight: 400;
+
+    a {
+      color: #ff6d00;
+    }
   }
 
   h3 {
@@ -38,6 +42,12 @@
     font-size: 14px;
     color: #bdbdbd;
   }
+
+}
+
+.card-link {
+  color: white;
+  display: block;
 }
 
 
@@ -89,20 +99,3 @@
     }
   }
 }
-
-
-// @media screen and (orientation:portrait) and (max-width: $screen-md) {
-//   .card {
-//     max-width: 400px;
-//     width: 50%;
-//     background-color: rgba(0, 0, 0, .7);
-//   }
-// }
-//
-// @media screen and (orientation:portrait) and (max-width: $screen-sm) {
-//   .card {
-//     max-width: 400px;
-//     width: 100%;
-//     background-color: rgba(0, 0, 0, .7);
-//   }
-// }

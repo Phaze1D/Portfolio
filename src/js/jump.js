@@ -1,4 +1,22 @@
+/*
+  This is a modification of https://github.com/callmecavs/jump.js because
+  that version would only work with window.scrollTo() and not with other
+  dom elements.
+*/
+
 export default class Jump {
+
+  constructor() {
+  }
+
+  /*
+    Scrolls a target element into the parents view
+    @params:
+      parentElement: domElement
+      targetElement: domSelector
+      options: {duration, offset, callback, easing}
+    @returns: null
+  */
   jump(parent, target, options = {}) {
     this.start = parent.scrollTop
     this.parent = parent

@@ -21,7 +21,7 @@
         <button class="burger" type="button" data-ripple-color="rgba(255,255,255,0.5)">
             <i class="material-icons">menu</i>
         </button>
-        <div id="titles">
+        <div class="titles">
           <h1>David Villarreal</h1>
           <h4>Fullstack Coding Wizard</h4>
         </div>
@@ -34,21 +34,22 @@
                 <i class="material-icons">menu</i>
             </button>
             <ul class="menu">
-              <li class="menu-item has-ripple" data-id="web" data-ripple-color="rgba(0, 0, 0, 0.3)">Experience</li>
-              <li class="sub menu-item has-ripple" data-id="web" data-ripple-color="rgba(0, 0, 0, 0.3)">Web</li>
-              <li class="sub menu-item has-ripple" data-id="mobile" data-ripple-color="rgba(0, 0, 0, 0.3)">Mobile</li>
-              <li class="sub menu-item has-ripple" data-id="education" data-ripple-color="rgba(0, 0, 0, 0.3)">Education</li>
-              <li class="sub menu-item has-ripple" data-id="work" data-ripple-color="rgba(0, 0, 0, 0.3)">Work</li>
+              <li class="menu-item has-ripple" data-section-id="web" data-ripple-color="rgba(0, 0, 0, 0.3)">Experience</li>
+              <li class="sub menu-item has-ripple" data-section-id="web" data-ripple-color="rgba(0, 0, 0, 0.3)">Web</li>
+              <li class="sub menu-item has-ripple" data-section-id="mobile" data-ripple-color="rgba(0, 0, 0, 0.3)">Mobile</li>
+              <li class="sub menu-item has-ripple" data-section-id="education" data-ripple-color="rgba(0, 0, 0, 0.3)">Education</li>
+              <li class="sub menu-item has-ripple" data-section-id="work" data-ripple-color="rgba(0, 0, 0, 0.3)">Work</li>
 
-              <li class="menu-item has-ripple" data-id="ethic" data-ripple-color="rgba(0, 0, 0, 0.3)">About Me</li>
-              <li class="sub menu-item has-ripple" data-id="ethic" data-ripple-color="rgba(0, 0, 0, 0.3)">Work Ethic</li>
-              <li class="sub menu-item has-ripple" data-id="values" data-ripple-color="rgba(0, 0, 0, 0.3)">Values</li>
-              <li class="sub menu-item has-ripple" data-id="mind" data-ripple-color="rgba(0, 0, 0, 0.3)">My Mind</li>
+              <li class="menu-item has-ripple" data-section-id="ethic" data-ripple-color="rgba(0, 0, 0, 0.3)">About Me</li>
+              <li class="sub menu-item has-ripple" data-section-id="ethic" data-ripple-color="rgba(0, 0, 0, 0.3)">Work Ethic</li>
+              <li class="sub menu-item has-ripple" data-section-id="values" data-ripple-color="rgba(0, 0, 0, 0.3)">Values</li>
+              <li class="sub menu-item has-ripple" data-section-id="mind" data-ripple-color="rgba(0, 0, 0, 0.3)">My Mind</li>
             </ul>
           </nav>
         </aside>
 
         <div class="content">
+          <!--  Handlebars template to keep code DRY -->
           <script id="sections-template" type="text/x-handlebars-template">
             {{#each sections}}
             <section id="{{id}}">
@@ -70,27 +71,31 @@
           <i class="fa fa-share-alt" aria-hidden="true"></i>
         </button>
 
-        <button class="fab-dial has-ripple" type="button" data-dial="1" data-ripple-color="rgba(0, 0, 0, 0.3)">
+        <a href="https://github.com/Phaze1D" class="fab-dial has-ripple" target="_blank" data-dial="1" data-ripple-color="rgba(0, 0, 0, 0.3)">
           <i class="fa fa-github" aria-hidden="true"></i>
-        </button>
+        </a>
 
-        <button class="fab-dial has-ripple" type="button" data-dial="2" data-ripple-color="rgba(244, 128, 35, 0.3)">
+        <a href="http://stackoverflow.com/story/davidstory" class="fab-dial has-ripple" target="_blank" data-dial="2" data-ripple-color="rgba(244, 128, 35, 0.3)">
           <img src="images/stackoverflow.svg" alt="StackOverFlow logo">
-        </button>
+        </a>
 
-        <button class="fab-dial has-ripple" type="button" data-dial="3" data-ripple-color="rgba(0, 123, 182, 0.3)">
+        <a href="https://www.linkedin.com/in/david-villarreal-720ab5134/" class="fab-dial has-ripple" target="_blank" data-dial="3" data-ripple-color="rgba(0, 123, 182, 0.3)">
           <i class="fa fa-linkedin-square" aria-hidden="true"></i>
-        </button>
+        </a>
       </div>
     </div>
 
+    <!--  Handlebars partial to keep code DRY -->
     <script id="card-partial" type="text/x-handlebars-template">
       <article class="card">
-        <picture>
-          <source srcset="{{largeImg}}" media="(min-width: 970px)">
-          <source srcset="{{landImg}}" media="(max-width: 750px) and (orientation:landscape)">
-          <img src="{{mediumImg}}" alt="Placeholder">
-        </picture>
+        <a href="{{url}}" class="card-link" target="_blank">
+          <picture>
+            <source srcset="{{largeImg}}" media="(min-width: 970px)">
+            <source srcset="{{landImg}}" media="(max-width: 750px) and (orientation:landscape)">
+            <img src="{{mediumImg}}" alt="Placeholder">
+          </picture>
+        </a>
+
 
         <div class="bottom">
           <h3>{{header}}</h3>

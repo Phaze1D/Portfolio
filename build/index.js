@@ -73,6 +73,11 @@
 "use strict";
 
 
+/*
+  Toggles the FAB dials
+  @params: clickEvent
+  @returns: null
+*/
 var toggleDials = function toggleDials(event) {
   var dialer = document.getElementById('share-dialer');
   if (dialer.classList.contains('show')) {
@@ -84,6 +89,11 @@ var toggleDials = function toggleDials(event) {
   }
 };
 
+/*
+  Adds click event listener to FAB Dialer
+  @params: null
+  @returns: null
+*/
 var initDialer = function initDialer() {
   var dButton = document.getElementById('share-dialer-button');
   dButton.addEventListener('click', toggleDials);
@@ -104,34 +114,50 @@ var _jump2 = _interopRequireDefault(_jump);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+/*
+  Toggles the drawer
+  @params: clickEvent
+  @returns: null
+*/
 var toggleDrawer = function toggleDrawer(event) {
   var drawer = document.getElementById('drawer');
   drawer.classList.toggle('open');
 };
 
-var initDrawer = function initDrawer() {
-  var burgers = document.getElementsByClassName('burger');
-
-  for (var i = 0; i < burgers.length; i++) {
-    burgers[i].addEventListener('click', toggleDrawer);
-  }
-
-  if (window.outerWidth > 970) {
-    document.getElementById('drawer').classList.add('open');
-  }
-};
-
+/*
+  Scrolls to corresponding section
+  @params: clickEvent
+  @returns: null
+*/
 var scrollTo = function scrollTo(event) {
-  var sectionID = event.currentTarget.getAttribute('data-id');
+  var sectionID = event.currentTarget.getAttribute('data-section-id');
   var j = new _jump2.default();
   j.jump(document.getElementsByClassName('content')[0], '#' + sectionID, { duration: 500 });
 };
 
+/*
+  Adds click event listener to all menu items
+  @params: null
+  @returns: null
+*/
 var initMenu = function initMenu() {
   var menuItems = document.getElementsByClassName('menu-item');
 
   for (var i = 0; i < menuItems.length; i++) {
     menuItems[i].addEventListener('click', scrollTo);
+  }
+};
+
+/*
+  Adds click event listener to the burger button
+  @params: null
+  @returns: null
+*/
+var initDrawer = function initDrawer() {
+  var burgers = document.getElementsByClassName('burger');
+
+  for (var i = 0; i < burgers.length; i++) {
+    burgers[i].addEventListener('click', toggleDrawer);
   }
 };
 
@@ -153,6 +179,12 @@ var _data = __webpack_require__(39);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+/*
+  Renders the handlebars templates at runtime. This can be improved with precomplied
+  templates but for simplicity I did it at runtime.
+  @params: null
+  @return: null
+*/
 var initHBS = function initHBS() {
   _handlebars2.default.registerPartial('cardPartial', document.getElementById('card-partial').innerHTML);
   var source = document.getElementById('sections-template').innerHTML;
@@ -170,6 +202,13 @@ exports.initHBS = initHBS;
 "use strict";
 
 
+/*
+	Animates the ripple effect
+	@params:
+		rippleColor
+		clickEvent
+	@return: null
+*/
 var rippleAnimation = function rippleAnimation(color, event) {
 	var posX = event.currentTarget.offsetTop;
 	var posY = event.currentTarget.offsetLeft;
@@ -200,12 +239,23 @@ var rippleAnimation = function rippleAnimation(color, event) {
 	span.className = "ripple rippleEffect";
 };
 
+/*
+	Creates a ripple wrapper div
+	@params: null
+	@return: domElement
+*/
 var rippleWrapper = function rippleWrapper() {
 	var wrapper = document.createElement("div");
 	wrapper.className = "ripple-wrapper";
 	return wrapper;
 };
 
+/*
+	Adds a ripple wrapper to all the dom elements with className has-ripple
+	and adds a click event listener
+	@params: null
+	@return: null
+*/
 var initRipple = function initRipple() {
 	var rippleParents = document.getElementsByClassName('has-ripple');
 
@@ -435,6 +485,7 @@ module.exports = __webpack_require__.p + "public/vf169-medium.jpg";
 "use strict";
 
 
+// Using js instead of json because json does not allow multiline strings
 var context = {
   sections: [{
     title: "Web Development",
@@ -443,8 +494,9 @@ var context = {
       header: "Devrag",
       dateCreated: "May 08, 2015",
       dateFinished: "Mar 12, 2016",
-      description: " Devrag was going to be a website that allowed all types of software developers to find the\n          tools that they needed more easily. It would have accomplished this by allowing creators to tag there tools\n          with a specific technology that it was for and then developers would search by tag (Kind of like what\n          Github just created).",
+      description: "Devrag was going to be a website that allowed all types of software developers to find the\n          tools that they needed more easily. It would have accomplished this by allowing creators to tag there tools\n          with a specific technology that it was for and then developers would search by tag (Kind of like what\n          Github just created).",
       tags: ["Ruby on Rails", "HTML", "MySQL", "Javascript", "Jquery", "Heroku", "SCSS"],
+      url: "https://github.com/Phaze1D/Devrag",
       largeImg: 'public/dev169-large.jpg',
       landImg: 'public/dev169-land.jpg',
       mediumImg: 'public/dev169-medium.jpg'
@@ -454,6 +506,7 @@ var context = {
       dateFinished: "Nov 29, 2016",
       description: "This is a e-commerce website that I built for a client using a PHP framework call Laravel. It also has a\n          custom built backoffice where the client can easily manage the site and view reports and graphs. I use alot of\n          AWS products like Elasticbean Stalk, Route53, Workmail and a couple more to manage all the backend.",
       tags: ["Laravel", "HTML", "MySQL", "Javascript", "Jquery", "AWS Elasticbean Stalk", "Less"],
+      url: "https://bellezaorganica.com.mx/",
       largeImg: 'public/bell169-large.jpg',
       landImg: 'public/bell169-land.jpg',
       mediumImg: 'public/bell169-medium.jpg'
@@ -463,6 +516,7 @@ var context = {
       dateFinished: "Oct 19, 2016",
       description: "This is a MeteorJS Concept App for all types of agriculture business call Farmage. It is met to organize all of the\n          data that a agriculture business has into a much more manageable structure. All of the backend works but the frontend\n          is just a simple black and white mockup.",
       tags: ["MeteorJS", "JADE", "MongoDB", "Coffescript", "Blaze", "Less"],
+      url: "https://github.com/Phaze1D/Farmage-Concept",
       largeImg: 'public/fb169-large.jpg',
       landImg: 'public/fb169-land.jpg',
       mediumImg: 'public/fb169-medium.jpg'
@@ -472,6 +526,7 @@ var context = {
       dateFinished: "Not Finished",
       description: "This is the frontend for Farmage Web App. I follow the <a href=\"https://material.io/guidelines/\">Material Design Guidelines</a>\n          to the best of my abilties. Splitting the app into 2 different projects made it much more maintainable and cleaner. I am hoping to\n          create the mobile version of the app with React Native",
       tags: ["ReactJS", "HTML", "ES6", "Javascript", "Less"],
+      url: "https://github.com/Phaze1D/Farmage_Frontend",
       largeImg: 'public/ff169-large.jpg',
       landImg: 'public/ff169-land.jpg',
       mediumImg: 'public/ff169-medium.jpg'
@@ -481,6 +536,7 @@ var context = {
       dateFinished: "Feb 17, 2017",
       description: "A Udacity Project from there Fullstack Nanodegree Course. This is a simple python web app that renders a html template of\n          a couple of my favorite movies and shows you their youtube trailers when you click on them. ",
       tags: ["Python", "HTML"],
+      url: "https://github.com/Phaze1D/Udacity-Fullstack-Projects/tree/master/MovieTrailerWebsite",
       largeImg: 'public/mo169-large.jpg',
       landImg: 'public/mo169-land.jpg',
       mediumImg: 'public/mo169-medium.jpg'
@@ -490,6 +546,7 @@ var context = {
       dateFinished: "Feb 22, 2017",
       description: "My Portfolio Website which is also part of the Udacity Nanodegree Fullstack and Frontend Courses. I made this with pure\n          Javascript and Handlebars to keep my HTML DRY. Surprisingly, I can up with the design even though I do not consider myself a UI Designer",
       tags: ["Javascript", "HTML", "Handlebars", "Webpack", "SCSS"],
+      url: "https://github.com/Phaze1D/Portfolio",
       largeImg: 'public/po169-large.jpg',
       landImg: 'public/po169-land.jpg',
       mediumImg: 'public/po169-medium.jpg'
@@ -503,6 +560,7 @@ var context = {
       dateFinished: "Jan 3, 2015",
       description: "This was the first Android game that I published. It is a simple 2D game where you have to rearrange balls of the same\n          color together and eliminate them before the hit the top. It's kind of like a mix between Candy Crush and Tetris. I used a game engine\n          called LibGDX which is written in Java and I used some of the Android SDK for app purchases.",
       tags: ["Java", "Android", "LibGDX"],
+      url: "https://play.google.com/store/apps/details?id=com.Phaze1D.RisingFallAndroidV2.android",
       largeImg: 'public/rf169-large.jpg',
       landImg: 'public/rf169-land.jpg',
       mediumImg: 'public/rf169-medium.jpg'
@@ -512,6 +570,7 @@ var context = {
       dateFinished: "Jan 3, 2015",
       description: "This is the IOS version of Rising Fall built with Apple's Native 2D game called SpriteKit, written in Objective C. This was\n          the first IOS game that I published on the App Store. I came up with the idea when I was in college and I decided to start the Project\n          during my summer break. ",
       tags: ["Objective C", "IOS", "SpriteKit"],
+      url: "https://itunes.apple.com/us/app/rising-fall/id904055570?mt=8",
       largeImg: 'public/rf169-large.jpg',
       landImg: 'public/rf169-land.jpg',
       mediumImg: 'public/rf169-medium.jpg'
@@ -521,6 +580,7 @@ var context = {
       dateFinished: "Mar 30, 2015",
       description: "This was a small litte game I made to learn some C++. I used a game engine called Cocos2d-X which is written in C++. The\n          game is just a simple game where the user has to avoid the color boxs by moving the circle around. It gets harder and harder the longer\n          you play it.",
       tags: ["C++", "Cocos2d-X", "Android", "IOS"],
+      url: "https://itunes.apple.com/us/app/eschew/id980786957?mt=8",
       largeImg: 'public/es169-large.jpg',
       landImg: 'public/es169-land.jpg',
       mediumImg: 'public/es169-medium.jpg'
@@ -534,6 +594,7 @@ var context = {
       dateFinished: "July 02, 2014",
       description: "I study Computer Science at SMC for 3 years and took alot of courses related to CS including Data Structures and Algorithm\n          Analysis. My plan was to transfer to one of the UC colleges like UC Berkeley or UCLA but unfortunately I had to drop out due to\n          insufficient funds. I moved back to Mexico to help learn by myself and help my parents with there company.",
       tags: ["Computer Science", "College Math", "Data Structures", "Algorithm Analysis"],
+      url: "http://www.smc.edu/Pages/Home.aspx",
       largeImg: 'public/smc169-large.jpg',
       landImg: 'public/smc169-land.jpg',
       mediumImg: 'public/smc169-medium.jpg'
@@ -543,6 +604,7 @@ var context = {
       dateFinished: "In Progress",
       description: "Since I drop out of college I have always been looking for a good website that can teach me the skills that I need to become\n          a better programmer. I found Udacity late December of 2016 and I thought that this is a great site to learn from top professionals. Even\n          though I already had a lot of experience, this was a great way to fine tune my knowledge of coding.",
       tags: ["CSS", "HTML", "Javascript"],
+      url: "https://www.udacity.com/course/front-end-web-developer-nanodegree--nd001",
       largeImg: 'public/ud169-large.jpg',
       landImg: 'public/ud169-land.jpg',
       mediumImg: 'public/ud169-medium.jpg'
@@ -552,6 +614,7 @@ var context = {
       dateFinished: "In Progress",
       description: "Since I drop out of college I have always been looking for a good website that can teach me the skills that I need to become\n          a better programmer. I found Udacity late December of 2016 and I thought that this is a great site to learn from top professionals. Even\n          though I already had a lot of experience, this was a great way to fine tune my knowledge of coding.",
       tags: ["CSS", "HTML", "Javascript", "Linux", "Python"],
+      url: "https://www.udacity.com/course/full-stack-web-developer-nanodegree--nd004",
       largeImg: 'public/ud169-large.jpg',
       landImg: 'public/ud169-land.jpg',
       mediumImg: 'public/ud169-medium.jpg'
@@ -565,6 +628,7 @@ var context = {
       dateFinished: "Jan 27, 2017",
       description: "Vida Flor is an organic beauty company that first hire me to help them build a website. I was hired as a freelance\n          and after I finished there website they ask me if I could help them modernize there company. So I built them a simple POS system\n          and use Microsoft Access to create reports for Data Analysis. I also built a bunch of small automated task in excel and shell scripts\n          that simplify their work flow.",
       tags: ["Fullstack Engineer", "Database Manager", "Data Analysis"],
+      url: "https://bellezaorganica.com.mx/",
       largeImg: 'public/vf169-large.jpg',
       landImg: 'public/vf169-land.jpg',
       mediumImg: 'public/vf169-medium.jpg'
@@ -601,10 +665,26 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+/*
+  This is a modification of https://github.com/callmecavs/jump.js because
+  that version would only work with window.scrollTo() and not with other
+  dom elements.
+*/
+
 var Jump = function () {
   function Jump() {
     _classCallCheck(this, Jump);
   }
+
+  /*
+    Scrolls a target element into the parents view
+    @params:
+      parentElement: domElement
+      targetElement: domSelector
+      options: {duration, offset, callback, easing}
+    @returns: null
+  */
+
 
   _createClass(Jump, [{
     key: 'jump',
@@ -842,6 +922,9 @@ __webpack_require__(36);
 
 __webpack_require__(24);
 
+/*
+  Initializes all events listeners when dom is finished loaded
+*/
 document.addEventListener("DOMContentLoaded", function (event) {
   (0, _drawer.initDrawer)();
   (0, _drawer.initMenu)();

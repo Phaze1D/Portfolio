@@ -47,7 +47,7 @@ section {
 
 a {
   text-decoration: none;
-  color: #ff6d00; }
+  color: black; }
 
 .flex-grid {
   display: flex;
@@ -91,36 +91,17 @@ a {
   .burger i {
     vertical-align: middle; }
 
-#drawer {
-  overflow-y: auto;
-  overflow-x: hidden;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  max-height: calc(100vh - 92px);
-  width: 256px;
-  flex-shrink: 0; }
-
-#titles {
+.titles {
   padding: 10px 0;
   flex-grow: 1; }
-  #titles h1 {
+  .titles h1 {
     margin: 5px; }
-  #titles h4 {
+  .titles h4 {
     margin: 5px; }
 
 @media (max-width: 970px) {
   body {
     background-image: url(public/beauty-medium.jpg); }
-  #drawer {
-    position: fixed;
-    left: 0;
-    top: 0;
-    margin: 0;
-    z-index: 100;
-    transform: translate(-100%, 0);
-    background-color: black;
-    box-shadow: 0px 0px 5px 1px black; }
-    #drawer.open {
-      transform: translate(0, 0); }
   .burger {
     display: block; } }
 
@@ -129,12 +110,10 @@ a {
     background-image: url(public/beauty-small.jpg); }
   .flex-grid {
     justify-content: center; }
-  #titles h1 {
+  .titles h1 {
     font-size: 22px; }
-  #titles h4 {
+  .titles h4 {
     font-size: 14px; }
-  #drawer {
-    max-height: calc(100vh - 78px); }
   .content {
     max-height: calc(100vh - 78px); } }
 
@@ -160,6 +139,31 @@ a {
     background-color: rgba(255, 255, 255, 0.2); }
   .menu-item.sub {
     padding: 10px 10px 10px 32px; }
+
+#drawer {
+  overflow-y: auto;
+  overflow-x: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  max-height: calc(100vh - 92px);
+  width: 256px;
+  flex-shrink: 0; }
+
+@media (max-width: 970px) {
+  #drawer {
+    position: fixed;
+    left: 0;
+    top: 0;
+    margin: 0;
+    z-index: 100;
+    transform: translate(-100%, 0);
+    background-color: black;
+    box-shadow: 0px 0px 5px 1px black; }
+    #drawer.open {
+      transform: translate(0, 0); } }
+
+@media (max-width: 764px) {
+  #drawer {
+    max-height: calc(100vh - 78px); } }
 
 .has-ripple {
   position: relative;
@@ -211,6 +215,9 @@ a {
 
 .fab-dial {
   position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 40px;
   height: 40px;
   left: calc(50% - 20px);
@@ -278,7 +285,8 @@ a {
   border: 1px solid white;
   border-radius: 3px;
   overflow: hidden;
-  margin: 8px; }
+  margin: 8px;
+  align-self: flex-start; }
   .card .bottom {
     padding: 0 16px 0; }
   .card picture {
@@ -289,6 +297,8 @@ a {
     text-align: justify;
     font-size: 15px;
     font-weight: 400; }
+    .card p a {
+      color: #ff6d00; }
   .card h3 {
     font-size: 24px;
     margin: 15px 0 0; }
@@ -296,6 +306,10 @@ a {
     margin: 2px 0 16px;
     font-size: 14px;
     color: #bdbdbd; }
+
+.card-link {
+  color: white;
+  display: block; }
 
 .tags {
   list-style: none;

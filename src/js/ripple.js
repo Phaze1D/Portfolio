@@ -1,12 +1,18 @@
 
-
+/*
+	Animates the ripple effect
+	@params:
+		rippleColor
+		clickEvent
+	@return: null
+*/
 let rippleAnimation = (color, event) => {
 	let posX = event.currentTarget.offsetTop;
 	let posY = event.currentTarget.offsetLeft;
 	let	buttonWidth = event.currentTarget.clientWidth;
 	let	buttonHeight = event.currentTarget.clientHeight;
 
-	
+
   let child = event.currentTarget.getElementsByClassName('ripple')[0];
   if(child) event.currentTarget.removeChild( child );
 
@@ -31,12 +37,23 @@ let rippleAnimation = (color, event) => {
   span.className = "ripple rippleEffect"
 }
 
+/*
+	Creates a ripple wrapper div
+	@params: null
+	@return: domElement
+*/
 let rippleWrapper = () => {
   let wrapper = document.createElement("div");
   wrapper.className = "ripple-wrapper";
   return wrapper;
 }
 
+/*
+	Adds a ripple wrapper to all the dom elements with className has-ripple
+	and adds a click event listener
+	@params: null
+	@return: null
+*/
 let initRipple = () => {
 	let rippleParents = document.getElementsByClassName('has-ripple');
 

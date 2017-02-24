@@ -1,3 +1,4 @@
+// Using js instead of json because json does not allow multiline strings
 let context = {
   sections: [
     {
@@ -8,7 +9,7 @@ let context = {
           header: "Devrag",
           dateCreated: "May 08, 2015",
           dateFinished: "Mar 12, 2016",
-          description: ` Devrag was going to be a website that allowed all types of software developers to find the
+          description: `Devrag was going to be a website that allowed all types of software developers to find the
           tools that they needed more easily. It would have accomplished this by allowing creators to tag there tools
           with a specific technology that it was for and then developers would search by tag (Kind of like what
           Github just created).`,
@@ -21,6 +22,7 @@ let context = {
             "Heroku",
             "SCSS"
           ],
+          url: "https://github.com/Phaze1D/Devrag",
           largeImg: 'public/dev169-large.jpg',
           landImg: 'public/dev169-land.jpg',
           mediumImg: 'public/dev169-medium.jpg'
@@ -41,6 +43,7 @@ let context = {
             "AWS Elasticbean Stalk",
             "Less"
           ],
+          url: "https://bellezaorganica.com.mx/",
           largeImg: 'public/bell169-large.jpg',
           landImg: 'public/bell169-land.jpg',
           mediumImg: 'public/bell169-medium.jpg'
@@ -60,6 +63,7 @@ let context = {
             "Blaze",
             "Less"
           ],
+          url: "https://github.com/Phaze1D/Farmage-Concept",
           largeImg: 'public/fb169-large.jpg',
           landImg: 'public/fb169-land.jpg',
           mediumImg: 'public/fb169-medium.jpg'
@@ -78,6 +82,7 @@ let context = {
             "Javascript",
             "Less"
           ],
+          url: "https://github.com/Phaze1D/Farmage_Frontend",
           largeImg: 'public/ff169-large.jpg',
           landImg: 'public/ff169-land.jpg',
           mediumImg: 'public/ff169-medium.jpg'
@@ -92,6 +97,7 @@ let context = {
             "Python",
             "HTML"
           ],
+          url: "https://github.com/Phaze1D/Udacity-Fullstack-Projects/tree/master/MovieTrailerWebsite",
           largeImg: 'public/mo169-large.jpg',
           landImg: 'public/mo169-land.jpg',
           mediumImg: 'public/mo169-medium.jpg'
@@ -109,6 +115,7 @@ let context = {
             "Webpack",
             "SCSS"
           ],
+          url: "https://github.com/Phaze1D/Portfolio",
           largeImg: 'public/po169-large.jpg',
           landImg: 'public/po169-land.jpg',
           mediumImg: 'public/po169-medium.jpg'
@@ -131,6 +138,7 @@ let context = {
             "Android",
             "LibGDX"
           ],
+          url: "https://play.google.com/store/apps/details?id=com.Phaze1D.RisingFallAndroidV2.android",
           largeImg: 'public/rf169-large.jpg',
           landImg: 'public/rf169-land.jpg',
           mediumImg: 'public/rf169-medium.jpg'
@@ -147,6 +155,7 @@ let context = {
             "IOS",
             "SpriteKit"
           ],
+          url: "https://itunes.apple.com/us/app/rising-fall/id904055570?mt=8",
           largeImg: 'public/rf169-large.jpg',
           landImg: 'public/rf169-land.jpg',
           mediumImg: 'public/rf169-medium.jpg'
@@ -164,6 +173,7 @@ let context = {
             "Android",
             "IOS"
           ],
+          url: "https://itunes.apple.com/us/app/eschew/id980786957?mt=8",
           largeImg: 'public/es169-large.jpg',
           landImg: 'public/es169-land.jpg',
           mediumImg: 'public/es169-medium.jpg'
@@ -187,6 +197,7 @@ let context = {
             "Data Structures",
             "Algorithm Analysis"
           ],
+          url: "http://www.smc.edu/Pages/Home.aspx",
           largeImg: 'public/smc169-large.jpg',
           landImg: 'public/smc169-land.jpg',
           mediumImg: 'public/smc169-medium.jpg'
@@ -203,6 +214,7 @@ let context = {
             "HTML",
             "Javascript"
           ],
+          url: "https://www.udacity.com/course/front-end-web-developer-nanodegree--nd001",
           largeImg: 'public/ud169-large.jpg',
           landImg: 'public/ud169-land.jpg',
           mediumImg: 'public/ud169-medium.jpg'
@@ -221,6 +233,7 @@ let context = {
             "Linux",
             "Python"
           ],
+          url: "https://www.udacity.com/course/full-stack-web-developer-nanodegree--nd004",
           largeImg: 'public/ud169-large.jpg',
           landImg: 'public/ud169-land.jpg',
           mediumImg: 'public/ud169-medium.jpg'
@@ -244,6 +257,7 @@ let context = {
             "Database Manager",
             "Data Analysis"
           ],
+          url: "https://bellezaorganica.com.mx/",
           largeImg: 'public/vf169-large.jpg',
           landImg: 'public/vf169-land.jpg',
           mediumImg: 'public/vf169-medium.jpg'

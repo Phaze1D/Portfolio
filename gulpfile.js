@@ -96,7 +96,7 @@ gulp.task('move-svg', function() {
 })
 
 gulp.task('webpack', function() {
-  return gulp.src('src/app/index.js')
+  return gulp.src('src/js/index.js')
     .pipe(wstream(require('./webpack.config.js'), webpack))
     .pipe(gulp.dest('build/'))
 });

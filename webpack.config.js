@@ -10,7 +10,7 @@ var htmlPlugin = new HtmlWebpackPlugin({
 });
 
 
-const INDEX_JS = path.join(__dirname, "src/app", "index.js");
+const INDEX_JS = path.join(__dirname, "src/js", "index.js");
 
 
 module.exports = {

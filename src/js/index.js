@@ -44,6 +44,9 @@ import '../images/po169-land.jpg'
 
 
 
+/*
+  Initializes all events listeners when dom is finished loaded
+*/
 document.addEventListener("DOMContentLoaded", (event) => {
   initDrawer();
   initMenu();

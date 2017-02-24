@@ -56,7 +56,7 @@ section {
 
 a {
   text-decoration: none;
-  color: #ff6d00;
+  color: black;
 }
 
 .flex-grid {
@@ -110,16 +110,7 @@ a {
   }
 }
 
-#drawer {
-  overflow-y: auto;
-  overflow-x: hidden;
-  transition: all .3s cubic-bezier(0.4, 0, 0.2, 1);
-  max-height: calc(100vh - #{$header-height});
-  width: $drawer-width;
-  flex-shrink: 0;
-}
-
-#titles {
+.titles {
   padding: 10px 0;
   flex-grow: 1;
 
@@ -139,22 +130,6 @@ a {
     background-image:    url("../images/beauty-medium.jpg");
   }
 
-  #drawer {
-    position: fixed;
-    left: 0;
-    top: 0;
-    margin: 0;
-    z-index: 100;
-    transform: translate(-100%, 0);
-    background-color: rgba(0,0,0,1);
-    box-shadow: 0px 0px 5px 1px rgba(0,0,0,1);
-
-
-    &.open {
-      transform: translate(0, 0);
-    }
-  }
-
   .burger {
     display: block;
   }
@@ -170,24 +145,22 @@ a {
     justify-content: center;
   }
 
-  #titles h1 {
-    font-size: 22px;
-  }
+  .titles {
+    h1 {
+      font-size: 22px;
+    }
 
-  #titles h4 {
-    font-size: 14px;
-  }
-
-  #drawer {
-    max-height: calc(100vh - 78px);
+    h4 {
+      font-size: 14px;
+    }
   }
 
   .content {
-    max-height: calc(100vh - 78px);
+    max-height: calc(100vh - #{$header-height-sm});
   }
 }
 
-
+// Adds ellipsis to mulitple line text
 @mixin  paragraph-ellipsis($maxLines, $lineHeight, $fontSize) {
   max-width: 100%;
   overflow: hidden;
