@@ -1,4 +1,8 @@
 
+import Jump from './jump.js'
+
+
+
 
 
 let toggleDrawer = ( event ) => {
@@ -15,8 +19,23 @@ let initDrawer = () => {
   }
 
   if(window.outerWidth > 970) {
-    document.getElementById('drawer').classList.add('open')
+    document.getElementById('drawer').classList.add('open');
+  }
+}
+
+let scrollTo = ( event ) => {
+  let sectionID = event.currentTarget.getAttribute('data-id');
+  let j = new Jump()
+  j.jump(document.getElementsByClassName('content')[0], `#${sectionID}`, {duration: 500})
+}
+
+let initMenu = () => {
+  let menuItems = document.getElementsByClassName('menu-item');
+
+  for (var i = 0; i < menuItems.length; i++) {
+    menuItems[i].addEventListener('click', scrollTo)
   }
 }
 
 exports.initDrawer = initDrawer;
+exports.initMenu = initMenu;

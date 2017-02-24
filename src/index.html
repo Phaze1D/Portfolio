@@ -34,18 +34,16 @@
                 <i class="material-icons">menu</i>
             </button>
             <ul class="menu">
-              <li class="menu-item has-ripple" data-ripple-color="rgba(0, 0, 0, 0.3)">Experience</li>
-              <li class="sub menu-item has-ripple" data-ripple-color="rgba(0, 0, 0, 0.3)">Web</li>
-              <li class="sub menu-item has-ripple" data-ripple-color="rgba(0, 0, 0, 0.3)">Mobile</li>
-              <li class="sub menu-item has-ripple" data-ripple-color="rgba(0, 0, 0, 0.3)">Machine Learning</li>
-              <li class="sub menu-item has-ripple" data-ripple-color="rgba(0, 0, 0, 0.3)">Artificial Intelligence</li>
-              <li class="sub menu-item has-ripple" data-ripple-color="rgba(0, 0, 0, 0.3)">Education</li>
-              <li class="sub menu-item has-ripple" data-ripple-color="rgba(0, 0, 0, 0.3)">Other</li>
+              <li class="menu-item has-ripple" data-id="web" data-ripple-color="rgba(0, 0, 0, 0.3)">Experience</li>
+              <li class="sub menu-item has-ripple" data-id="web" data-ripple-color="rgba(0, 0, 0, 0.3)">Web</li>
+              <li class="sub menu-item has-ripple" data-id="mobile" data-ripple-color="rgba(0, 0, 0, 0.3)">Mobile</li>
+              <li class="sub menu-item has-ripple" data-id="education" data-ripple-color="rgba(0, 0, 0, 0.3)">Education</li>
+              <li class="sub menu-item has-ripple" data-id="work" data-ripple-color="rgba(0, 0, 0, 0.3)">Work</li>
 
-              <li class="menu-item has-ripple" data-ripple-color="rgba(0, 0, 0, 0.3)">About Me</li>
-              <li class="sub menu-item has-ripple" data-ripple-color="rgba(0, 0, 0, 0.3)">Work Ethic</li>
-              <li class="sub menu-item has-ripple" data-ripple-color="rgba(0, 0, 0, 0.3)">Values</li>
-              <li class="sub menu-item has-ripple" data-ripple-color="rgba(0, 0, 0, 0.3)">My Mind</li>
+              <li class="menu-item has-ripple" data-id="ethic" data-ripple-color="rgba(0, 0, 0, 0.3)">About Me</li>
+              <li class="sub menu-item has-ripple" data-id="ethic" data-ripple-color="rgba(0, 0, 0, 0.3)">Work Ethic</li>
+              <li class="sub menu-item has-ripple" data-id="values" data-ripple-color="rgba(0, 0, 0, 0.3)">Values</li>
+              <li class="sub menu-item has-ripple" data-id="mind" data-ripple-color="rgba(0, 0, 0, 0.3)">My Mind</li>
             </ul>
           </nav>
         </aside>
@@ -53,10 +51,10 @@
         <div class="content">
           <script id="sections-template" type="text/x-handlebars-template">
             {{#each sections}}
-            <section>
-              <h2>{{title}}</h2>
-              <p class="description">{{{description}}}</p>
+            <section id="{{id}}">
+              <h2 class="section-header">{{title}}</h2>
               <div class="flex-grid">
+                <p class="description">{{{description}}}</p>
                 {{#each cards}}
                   {{> cardPartial}}
                 {{/each}}
@@ -90,7 +88,7 @@
       <article class="card">
         <picture>
           <source srcset="{{largeImg}}" media="(min-width: 970px)">
-          <source srcset="{{landscapeImg}}" media="(max-width: 750px) and (orientation:landscape)">
+          <source srcset="{{landImg}}" media="(max-width: 750px) and (orientation:landscape)">
           <img src="{{mediumImg}}" alt="Placeholder">
         </picture>
 

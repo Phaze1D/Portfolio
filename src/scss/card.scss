@@ -8,9 +8,11 @@
   border-radius: 3px;
   overflow: hidden;
   margin: 8px;
+  align-self: flex-start;
 
   .bottom {
     padding: 0 16px 0;
+    // flex-grow: 1;
   }
 
   picture {
@@ -34,7 +36,7 @@
 
   h5 {
     margin: 2px 0 16px;
-    font-size: 12px;
+    font-size: 14px;
     color: #bdbdbd;
   }
 }

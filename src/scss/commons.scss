@@ -4,7 +4,7 @@
 }
 
 body {
-  background-image:    url("../images/beauty.jpg");
+  background-image:    url("../images/beauty-large.jpg");
   background-size:     cover;
   background-repeat:   no-repeat;
   background-position: center center;
@@ -51,7 +51,7 @@ button {
 }
 
 section {
-  padding: 0 16px;
+  padding: 16px 16px;
 }
 
 a {
@@ -62,20 +62,25 @@ a {
 .flex-grid {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
 }
 
 .description {
   margin-top: 0;
-  max-width: 800px;
   text-align: justify;
+  max-width: 700px;
+  font-weight: 500;
+  font-size: 18px;
 }
 
 .content {
   flex-grow: 1;
-  max-height: calc(100vh - 92px);
+  max-height: calc(100vh - #{$header-height});
   overflow-y: auto;
   padding-bottom: 100px;
+}
+
+.section-header {
+  margin-top: 50px;
 }
 
 .overlay {
@@ -108,7 +113,7 @@ a {
   overflow-y: auto;
   overflow-x: hidden;
   transition: all .3s cubic-bezier(0.4, 0, 0.2, 1);
-  max-height: calc(100vh - 92px);
+  max-height: calc(100vh - #{$header-height});
   width: $drawer-width;
   flex-shrink: 0;
 }
@@ -128,6 +133,11 @@ a {
 
 
 @media (max-width: $screen-md) {
+
+  body {
+    background-image:    url("../images/beauty-medium.jpg");
+  }
+
   #drawer {
     position: fixed;
     left: 0;
@@ -149,8 +159,15 @@ a {
   }
 }
 
+@media (max-width: $screen-sm) {
 
-@media (max-width: $screen-xs) {
+  body {
+    background-image:    url("../images/beauty-small.jpg");
+  }
+
+  .flex-grid {
+    justify-content: center;
+  }
 
   #titles h1 {
     font-size: 22px;
