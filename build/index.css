@@ -284,7 +284,8 @@ a {
   .card picture {
     max-width: 100%; }
   .card img {
-    max-width: 100%; }
+    max-width: 100%;
+    opacity: 0.8; }
   .card p {
     text-align: justify;
     font-size: 15px;
