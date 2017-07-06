@@ -359,7 +359,7 @@ a {
         height: 1em;
         margin-top: 0.2em;
         background: black; }
-    .card picture {
+    .card a {
       padding: 16px 16px 16px 0;
       order: 1;
       max-width: 30%; }
