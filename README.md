@@ -9,7 +9,7 @@ This is the Portfolio Project that I made for my Udacity Frontend and Fullstack 
 
 
 ## Development
-This was the first time I decided to use webpack as the bundler, so I didn't know much about it back then so I know that the bundling setup isn't the best. That begin said I use gulp to optimize the images and then it runs webpack to bundle the Javascript. It also has a simple handlerbars template for all the cards and the data that get render can be found [here](src/js/data.js).
+This was the first time I decided to use webpack as the bundler, so I didn't know much about it back then. That begin said I use gulp to optimize the images and then it runs webpack to bundle the Javascript. It also has a simple handlerbars template for all the project cards. The data that gets rendered can be found [here](src/js/data.js), if you want to modify it.
 
 ### Get Started
 To get the development site up and running go to the project's root directory and run these commands in the terminal.
